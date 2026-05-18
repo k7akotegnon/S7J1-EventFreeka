@@ -1,0 +1,14 @@
+Nouveau participant pour <%= @attendance.event.title %> !
+==========================================================
+
+Salut <%= @admin.first_name %>,
+
+Un nouvel utilisateur vient de s'inscrire à ton événement.
+Le participant est : <%= @attendance.user.first_name %> <%= @attendance.user.last_name %>.
+
+Tu peux retrouver tous les détails de ton événement à cette adresse :
+<%= @url %>
+
+À très vite sur EventFreeka !
+
+L'équipe EventFreeka
