@@ -1,0 +1,47 @@
+<% content_for :title, "#{@event.title} - Event Freeka" %>
+
+<main class="container page-section">
+  <%= link_to "Retour aux evenements", events_path, class: "back-link" %>
+
+  <article class="event-detail">
+    <header class="event-detail__header">
+      <p class="eyebrow"><%= l(@event.start_date, format: "%d %B %Y a %Hh%M") %></p>
+      <h1><%= @event.title %></h1>
+      <p><%= @event.description %></p>
+    </header>
+
+    <div class="event-detail__grid">
+      <section>
+        <h2>Informations</h2>
+        <dl class="detail-list">
+          <div>
+            <dt>Lieu</dt>
+            <dd><%= @event.location %></dd>
+          </div>
+          <div>
+            <dt>Duree</dt>
+            <dd><%= @event.duration %> minutes</dd>
+          </div>
+          <div>
+            <dt>Fin</dt>
+            <dd><%= l(@event.end_date, format: "%d %B %Y a %Hh%M") %></dd>
+          </div>
+          <div>
+            <dt>Prix</dt>
+            <dd><%= number_to_currency(@event.price, unit: "EUR", format: "%n %u") %></dd>
+          </div>
+          <div>
+            <dt>Organisateur</dt>
+            <dd><%= @event.administrator.email %></dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="participants-box">
+        <h2>Participants</h2>
+        <p class="participants-count"><%= @event.attendances.size %></p>
+        <p>personne(s) inscrite(s)</p>
+      </aside>
+    </div>
+  </article>
+</main>

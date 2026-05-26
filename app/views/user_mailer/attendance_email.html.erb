@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Nouveau participant à ton événement !</h1>
+    <p>Salut <strong><%= @admin.first_name %></strong>,</p>
+    <p>Bonne nouvelle : un utilisateur vient de s'inscrire à ton événement intitulé <strong>"<%= @attendance.event.title %>"</strong>.</p>
+    <p>Le participant est : <%= @attendance.user.first_name %> <%= @attendance.user.last_name %> (<%= @attendance.user.email %>).</p>
+    <hr>
+    <p>Pour gérer ton événement et voir la liste complète des invités, clique sur le lien ci-dessous :</p>
+    <p><%= link_to "Voir mon événement", @url %></p>
+    <p>À très vite sur EventFreeka !</p>
+  </body>
+</html>

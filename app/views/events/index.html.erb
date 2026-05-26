@@ -1,0 +1,59 @@
+<% content_for :title, "Evenements - Event Freeka" %>
+
+<section class="hero">
+  <div class="container hero__content">
+    <p class="eyebrow">Event Freeka</p>
+    <h1>Trouvez votre prochain evenement.</h1>
+    <p class="hero__lead">
+      Decouvrez les sorties, ateliers et rencontres proposes par la communaute.
+    </p>
+  </div>
+</section>
+
+<main class="container page-section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">A venir</p>
+      <h2>Evenements disponibles</h2>
+    </div>
+    <span class="event-count"><%= pluralize(@events.size, "evenement") %></span>
+  </div>
+
+  <% if @events.any? %>
+    <div class="event-grid">
+      <% @events.each do |event| %>
+        <article class="event-card">
+          <div class="event-card__date">
+            <span><%= l(event.start_date, format: "%d") %></span>
+            <small><%= l(event.start_date, format: "%b") %></small>
+          </div>
+
+          <div class="event-card__body">
+            <h3><%= link_to event.title, event_path(event) %></h3>
+            <p><%= truncate(event.description, length: 135) %></p>
+
+            <dl class="event-meta">
+              <div>
+                <dt>Lieu</dt>
+                <dd><%= event.location %></dd>
+              </div>
+              <div>
+                <dt>Prix</dt>
+                <dd><%= number_to_currency(event.price, unit: "EUR", format: "%n %u") %></dd>
+              </div>
+              <div>
+                <dt>Participants</dt>
+                <dd><%= event.attendances.size %></dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="empty-state">
+      <h3>Aucun evenement pour le moment</h3>
+      <p>Lance <code>bin/rails db:seed</code> pour remplir la base avec des exemples.</p>
+    </div>
+  <% end %>
+</main>
