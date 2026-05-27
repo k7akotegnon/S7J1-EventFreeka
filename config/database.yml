@@ -89,6 +89,8 @@ production:
     <<: *default
     # Rails utilisera prioritairement cette URL si elle est présente dans l'environnement
     url: <%= ENV['DATABASE_URL'] %>
+    # Limiter les connexions pour le plan gratuit Neon
+    max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 3 } %>
   cache:
     <<: *primary_production
     database: event_freeka_production_cache
